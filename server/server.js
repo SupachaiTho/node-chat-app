@@ -21,12 +21,12 @@ io.on('connection',(socket)=>{
     var socketId = socket.id;
     var clientIpAddress = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
 
-    socket.emit('newMessage',generateMessage('Admin','Welcome to the Chat App'))
+    socket.emit('newMessage',generateMessage('Admin','Welcome to the Chat App','welcome'))
 
-    socket.broadcast.emit('newMessage',generateMessage('Admin',`${clientIpAddress} joited`))
+    socket.broadcast.emit('newMessage',generateMessage('Admin',`${clientIpAddress} was joited`,'welcome'))
 
     socket.on('createMessage',(message, callback)=>{
-        socket.broadcast.emit('newMessage',generateMessage(clientIpAddress,message.text))
+        socket.broadcast.emit('newMessage',generateMessage(clientIpAddress,message.text,''))
         callback();
     })
 
@@ -35,10 +35,7 @@ io.on('connection',(socket)=>{
     })
 
     socket.on('disconnect',()=>{
-    socket.on('createMessage',(message, callback)=>{
-        socket.broadcast.emit('newMessage',generateMessage('Admin',`${clientIpAddress} was left`))
-        callback();
-    })
+        socket.broadcast.emit('newMessage',generateMessage('Admin',`${clientIpAddress} was left`,'left'))
     })
 })
 

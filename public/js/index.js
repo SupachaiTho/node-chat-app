@@ -9,7 +9,13 @@ socket.on('disconnect',function(){
 
 socket.on('newMessage',function (message){
     var formattedTime = moment(message.createdAt).format('h:mm a')
-    var li = jQuery('<li></li>');
+    if(message.status == ''){
+        var li = jQuery('<li></li>');
+    }else if(message.status == 'welcome'){
+        var li = jQuery('<li style="color:#2DF622;" ></li>');
+    }else if(message.status == 'left'){
+        var li = jQuery('<li style="color:#FB0A0A;" ></li>');
+    }
     li.text(`${message.from} | ${formattedTime} : ${message.text}`)
     jQuery('#messages').append(li);
 });
