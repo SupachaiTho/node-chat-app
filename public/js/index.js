@@ -17,7 +17,7 @@ socket.on('newMessage',function (message){
 jQuery('#message-form').on('submit',function(e){
     e.preventDefault();
     var li = jQuery('<li></li>');
-    li.text(`User: ${jQuery('[name=message]').val()}`)
+    li.text(`Me: ${jQuery('[name=message]').val()}`)
     jQuery('#messages').append(li);
     socket.emit('createMessage',{
         from:'User',
