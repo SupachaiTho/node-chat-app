@@ -22,6 +22,7 @@ io.on('connection',(socket)=>{
     var clientIpAddress = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
 
     socket.emit('newMessage',generateMessage('Admin','Welcome to the Chat App','welcome'))
+     socket.emit('newMessage',generateMessage('Admin','Who are you ?',''))
 
     socket.broadcast.emit('newMessage',generateMessage('Admin',`${clientIpAddress} was joited`,'welcome'))
 
