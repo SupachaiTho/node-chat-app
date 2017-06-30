@@ -18,19 +18,20 @@ app.use(express.static(publicPath));
 io.on('connection',(socket)=>{
     console.log('New User Connected')
 
-    var address = socket.handshake.address;
+    var socketId = socket.id;
+    var clientIp = socket.request.connection.remoteAddress;
 
     socket.emit('newMessage',generateMessage('Admin','Welcome to the Chat App'))
 
     socket.broadcast.emit('newMessage',generateMessage('Admin','New user jointed'))
 
     socket.on('createMessage',(message, callback)=>{
-        socket.broadcast.emit('newMessage',generateMessage(address,message.text))
+        socket.broadcast.emit('newMessage',generateMessage(clientIp,message.text))
         callback('This from server');
     })
 
     socket.on('createLocationMessage',(coords)=>{
-        io.emit('newLocationMessage',generateLocationMessage(address,coords.latitude,coords.longitude))
+        io.emit('newLocationMessage',generateLocationMessage(clientIp,coords.latitude,coords.longitude))
     })
 
     socket.on('disconnect',()=>{
