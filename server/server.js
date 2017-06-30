@@ -23,7 +23,7 @@ io.on('connection',(socket)=>{
 
     socket.emit('newMessage',generateMessage('Admin','Welcome to the Chat App'))
 
-    socket.broadcast.emit('newMessage',generateMessage('Admin','New user jointed'))
+    socket.broadcast.emit('newMessage',generateMessage('Admin','New user jointed'+clientIpAddress))
 
     socket.on('createMessage',(message, callback)=>{
         socket.broadcast.emit('newMessage',generateMessage(clientIpAddress,message.text))
