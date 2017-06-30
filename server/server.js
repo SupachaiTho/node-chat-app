@@ -35,7 +35,10 @@ io.on('connection',(socket)=>{
     })
 
     socket.on('disconnect',()=>{
-    console.log('Disconnected')
+    socket.on('createMessage',(message, callback)=>{
+        socket.broadcast.emit('newMessage',generateMessage('Admin',`${clientIpAddress} was left`))
+        callback();
+    })
     })
 })
 
