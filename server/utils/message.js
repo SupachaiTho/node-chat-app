@@ -1,10 +1,9 @@
 const moment = require('moment');
 
-var generateMessage = (from,text,status)=>{
+var generateMessage = (from,text)=>{
     return {
         from,
         text,
-        status,
         createdAt:moment().valueOf()
     };
 }
