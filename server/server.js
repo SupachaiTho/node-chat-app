@@ -35,17 +35,24 @@ io.on('connection',(socket)=>{
         io.to(params.room).emit('updateUserList',users.getUserList(params.room))
 
         socket.emit('newMessage',generateMessage('Admin','Welcome to the Chat App'))
-        socket.emit('newMessage',generateMessage('Admin','Who are you ?'))
         socket.broadcast.to(params.room).emit('newMessage',generateMessage('Admin',`${params.name} was joited`))
     })
 
     socket.on('createMessage',(message, callback)=>{
-        socket.broadcast.to(users.getUser(socket.id).room).emit('newMessage',generateMessage(users.getUser(socket.id).name,message.text))
+        var user = users.getUser(socket.id);
+
+        if(user && isRealString(message.text)){
+            io.to(user.room).emit('newMessage',generateMessage(user.name,message.text)) 
+        }
         callback();
     })
 
     socket.on('createLocationMessage',(coords)=>{
-        io.to(users.getUser(socket.id).room).emit('newLocationMessage',generateLocationMessage(users.getUser(socket.id).name,coords.latitude,coords.longitude))
+        var user = users.getUser(socket.id);
+
+        if(user){
+            io.to(user.room).emit('newLocationMessage',generateLocationMessage(user.name,coords.latitude,coords.longitude))
+        }
     })
 
     socket.on('disconnect',()=>{

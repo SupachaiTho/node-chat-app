@@ -71,19 +71,7 @@ socket.on('newMessage',function (message){
 jQuery('#message-form').on('submit',function(e){
     e.preventDefault();
 
-    var formattedTime = moment().format('h:mm a')
-
     var messageTextbox =  jQuery('[name=message]')
-
-    var template = jQuery('#message-template').html();
-    var html = Mustache.render(template,{
-        text:messageTextbox.val(),
-        from:"Me",
-        createdAt:formattedTime
-    });
-
-    jQuery('#messages').append(html);
-    scrollToBottom();
 
     socket.emit('createMessage',{
         from:'User',
