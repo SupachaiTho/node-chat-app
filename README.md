@@ -1,5 +1,5 @@
 # node-chat-app
-Real time chat application available on https://node-chat-app-supachai.herokuapp.com/
+Real time chat application
 
 This application was build by NodeJS
 
