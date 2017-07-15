@@ -1,7 +1,9 @@
 # node-chat-app
 Real time chat application
 
-This application was build by NodeJS via https://node-chat-app-supachai.herokuapp.com/
+https://node-chat-app-supachai.herokuapp.com/
+
+This application was build by NodeJS
 
 ## Get Strat
 * Go to https://node-chat-app-supachai.herokuapp.com/
