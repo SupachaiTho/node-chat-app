@@ -1,12 +1,12 @@
 # node-chat-app
-Real time chat application
+Real time chat application made with NodeJS during The Complete Node.js Developer Course.
 
-https://node-chat-app-supachai.herokuapp.com/
-
-This application was build by NodeJS
 
 ## Get Strat
 * Go to https://node-chat-app-supachai.herokuapp.com/
 * input Username and Room name
 * Get Chat with people in the same room
 
+# Demo
+
+https://node-chat-app-supachai.herokuapp.com/
